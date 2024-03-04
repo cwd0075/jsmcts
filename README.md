@@ -234,7 +234,10 @@ exports.PerfectPlayer.prototype.getAction = function(g) {
 [See simtictactoe.js for full details]
 
 ```
-% ./run.sh simtictactoe.js
+start github codespace  
+% chmod +x ./run.sh
+% npm install optparse  
+% ./run.sh simtictactoe.js  
 Usage: ./run.sh simtictactoe.js [options]
 
 Available options:

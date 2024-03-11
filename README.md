@@ -233,11 +233,13 @@ exports.PerfectPlayer.prototype.getAction = function(g) {
 
 [See simtictactoe.js for full details]
 
+### start github codespace    
+### % chmod +x ./run.sh  
+### % npm install optparse    
+### % ./run.sh simtictactoe.js -p mcts1000 -p perfect -n 1    
+
 ```
-start github codespace  
-% chmod +x ./run.sh
-% npm install optparse  
-% ./run.sh simtictactoe.js  
+
 Usage: ./run.sh simtictactoe.js [options]
 
 Available options:
@@ -314,6 +316,31 @@ On MacOS:
 ```
 % brew install node
 % npm install optparse
+```
+
+### Nondeterministic MCTS Search:
+
+Nondeterministic game, Backgammon use the same randomseed to play the game at each search beginning to create same random number sequence during the nTrialsPerSeed searching times to play the game,  
+Then in the next nTrialsPerSeed times search, it delete all children node of root.children and uses a new seed to play the game at each search start to re-create the below tree nodes   
+The idea is to keep the same starting seed in nTrialsPerSeed number of search times to keep consistency in building MCTS tree during that period,   
+at the same time it induces different randomness in another nTrialsPerSeed search by using a new set of randomseed in the next n Trials.  
+
+```
+        if (g.nondeterministic) {
+            // use determinization, running nTrialsPerSeed with the same PRNG seed
+            if (root.count % this.nTrialsPerSeed == 0) {
+                state.seed = new exports.PRNGSeed();
+                if (root.children) {
+                    // subtree node states potentially change with each seed, so we
+                    // clear the children of the top-level actions on seed change
+                    // (top-level values will be an average over all trials)
+                    for (var i = 0; i < root.children.length; i++) {
+                        root.children[i].children = null;
+                    }
+                }
+            }
+            tg = g.copyGame(new exports.PRNG(state.seed));
+        } 
 ```
 
 Copyright (c) 2022-2023 Greg Whitehead

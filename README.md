@@ -318,6 +318,8 @@ On MacOS:
 % npm install optparse
 ```
 
+## My Note  
+
 ### Nondeterministic MCTS Search:
 
 Nondeterministic game, Backgammon use the same randomseed to play the game at each search beginning to create same random number sequence during the nTrialsPerSeed searching times to play the game,  

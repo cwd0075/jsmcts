@@ -343,6 +343,13 @@ at the same time it induces different randomness in another nTrialsPerSeed searc
         } 
 ```
 
+### *** JSMCTS use args.["C"] = 1.0 and add Math.random()*1e-6 to ucb formula ***  
+avgGameDepth, how many game step from here to game including random playout  
+avgSearchDepth, search depth visited before random playout  
+(a / b): value sum of the node / total visit count  
+
+
+
 Copyright (c) 2022-2023 Greg Whitehead
 
 MIT License

@@ -319,6 +319,13 @@ On MacOS:
 ```
 
 ## My Note  
+### js/tictactoe.js and js/connectfour.js code Explain  
+game constructor this.board: board initial state array  
+allActions: list of valid moves  
+doActions: check win, no one win then continue to let next player move  
+lines array: winning position to check  
+toString: text printout of the current game state  
+
 
 ### Nondeterministic MCTS Search:
 
